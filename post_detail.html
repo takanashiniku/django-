@@ -1,0 +1,35 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<hr />
+<small>{{post.posted_date}}</small>
+<h1>{{post.title}}</h1>
+<p>{{post.body}}</p>
+<hr />
+
+{% for comment in post.comments.all %}
+
+<p>
+    {{comment.name}}さん
+    <br>
+    {{comment.body}}
+    <br>
+    {{comment.posted_date}}
+    <hr />
+</p>
+
+{% empty %}
+
+<p>コメントはまだありません</p>
+
+{% endfor %}
+
+<h2>コメントをする</h2>
+
+    <form action="." method="post">
+        {{form.as_p}}
+        <div>            
+            <button>送信</button>            
+        </div>
+    </form>
+
+{% endblock %}
